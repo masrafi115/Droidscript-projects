@@ -1,0 +1,72 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width">
+    <script src='file:///android_asset/app.js'></script>
+</head>
+	
+<script>
+    //Called after application is started.
+   /* function OnStart()
+    {
+        app.ShowPopup( "HTML Rocks!" );
+    }*/
+function OnStart()
+ {
+    app.ShowPopup("HTML Rocks!");
+    app.LoadScript("demo.js", OnLoad);
+    app.LoadScript("app.js", OnLoadMain);
+    
+    app.SetOnError(OnError);
+    app.LoadScript("math.js", function() {
+    // Require the math module
+    
+    
+    // Use the add function from math.js
+    var result = add(2, 3);
+    
+    app.ShowPopup(result); // Output: 5
+  });
+ }
+
+ function OnError(msg, line, file)
+ {
+    var text =
+       'Message: "' + msg + '"\n' +
+       'Line: ' + line + '\n';
+    //  'File: ' + app.Uri2Path(file) + '"';
+
+    app.Alert(text, "Received error message:");
+}
+ function OnLoad(){
+ app.ShowPopup("Loaded!");
+ 
+  var result =add(2, 7); // result is now 5
+  app.ShowPopup(result); 
+ }
+ function OnLoadMain(){
+ 
+ }
+/*import('./math.js').then(gpa=>{
+        console.log("grade service loaded");
+        //let g = computeNum(1);
+       // console.log(g.info());
+        app.Alert("ok "Received File" );
+    }).catch(console.error);*/
+</script>
+
+<style>
+	body { background-color: #ffffff; }
+    .hello 
+    { 
+        font-size: 42; 
+        width: 100%;
+        margin-top: 2em;
+        text-align: center;
+        color: blue;
+    }
+</style>
+
+<body onload="app.Start()">
+	
+</body>
+</html>
